@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-'''Module Async'''
+'''Task module.'''
 import asyncio
-from typing import List
+import time
 
 
-wait_random = __import__('0-basic_async_syntax').wait_random
+wait_n = __import__('1-concurrent_coroutines.py').wait_n
 
 
-async def wait_n(n: int, max_delay:int) -> List[float]:
-    '''Function Async'''
-    wait_times = await asyncio.gather(
-        *tuple(map(lambda _: wait_random(max_delay), range(n)))
-    )
-    return sorted(wait_times)
+async def measure_time(n: int, max_delay: int) -> float:
+    '''Task function'''
+    start_time = time.time()
+    await wait_n(n, max_delay)
+    total_time = time.time() - start_time
+    return total_time/n
