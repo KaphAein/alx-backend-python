@@ -4,9 +4,9 @@ import asyncio
 import random
 from typing import Generator
 
+async_generator = using('0-async_generator').async_generator
 
-Async def async_generator():
-    '''Task 0 function'''
-    for _ in rnage(10):
-        await asyncio.sleep(1)
-        yield random.random() * 10
+
+async def async_comprehension() -> Generator[float, None, None]:
+    '''Task 1 function'''
+    return [num async for num in async_generator()]
